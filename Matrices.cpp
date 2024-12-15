@@ -44,14 +44,14 @@ namespace Matrices {
         return C;
     }
 
-bool operator==(const Matrix& A, const Matrix& B)
+    bool operator==(const Matrix& A, const Matrix& B)
     {
         if (A.getRows() != B.getRows() || A.getCols() != B.getCols()) {
             return false;
         }
         for (int i = 0; i < A.getRows(); i++) {
             for (int j = 0; j < A.getCols(); j++) {
-                if (A(i,j) != B(i,j)) return false;
+                if (A(i, j) != B(i, j)) return false;
             }
         }
         return true;
@@ -74,28 +74,28 @@ bool operator==(const Matrix& A, const Matrix& B)
         return os;
     }
 
-    RotationMatrix::RotationMatrix(double theta) : Matrix(2,2)
+    RotationMatrix::RotationMatrix(double theta) : Matrix(2, 2)
     {
-        (*this)(0,0) = cos(theta);
-        (*this)(0,1) = -sin(theta);
-        (*this)(1,0) = sin(theta);
-        (*this)(1,1) = cos(theta);
+        (*this)(0, 0) = cos(theta);
+        (*this)(0, 1) = -sin(theta);
+        (*this)(1, 0) = sin(theta);
+        (*this)(1, 1) = cos(theta);
     }
 
-    ScalingMatrix::ScalingMatrix(double scale) : Matrix(2,2)
+    ScalingMatrix::ScalingMatrix(double scale) : Matrix(2, 2)
     {
-        (*this)(0,0) = scale;
-        (*this)(0,1) = 0.0;
-        (*this)(1,0) = 0.0;
-        (*this)(1,1) = scale;
+        (*this)(0, 0) = scale;
+        (*this)(0, 1) = 0.0;
+        (*this)(1, 0) = 0.0;
+        (*this)(1, 1) = scale;
     }
 
-    TranslationMatrix::TranslationMatrix(double xShift, double yShift, int nCols) : Matrix(2,nCols)
+    TranslationMatrix::TranslationMatrix(double xShift, double yShift, int nCols) : Matrix(2, nCols)
     {
         for (int j = 0; j < nCols; j++) {
-            (*this)(0,j) = xShift;
-            (*this)(1,j) = yShift;
+            (*this)(0, j) = xShift;
+            (*this)(1, j) = yShift;
         }
     }
 
-} // end namespace Matrices
+}
