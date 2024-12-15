@@ -55,7 +55,6 @@ namespace Matrices
     public:
         ScalingMatrix(double scale);
     };
-
     class TranslationMatrix : public Matrix
     {
     public:
@@ -64,4 +63,4 @@ namespace Matrices
 
 }
 
-#endif // MATRIX_H_INCLUDED
+#endif
