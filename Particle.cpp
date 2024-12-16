@@ -2,8 +2,10 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
-#include <cmath>
+#include <cmath> 
 using namespace std;
+
+bool gravityEnabled = true;
 
 Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosition)
     : m_A(2, numPoints)
@@ -24,8 +26,7 @@ Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosit
     if (rand() % 2 == 1) {
         m_vx *= -1.0f;
     }
-
-    m_vy = 100.0f + (float)(rand() % 401); // [100,500]
+    m_vy = 100.0f + (float)(rand() % 401);
 
     m_color1 = Color::White;
     m_color2 = Color((Uint8)(rand() % 256), (Uint8)(rand() % 256), (Uint8)(rand() % 256));
@@ -75,7 +76,10 @@ void Particle::update(float dt)
     scale(SCALE);
 
     float dx = m_vx * dt;
-    m_vy -= G * dt;
+
+    if (gravityEnabled) {
+        m_vy -= G * dt;
+    }
     float dy = m_vy * dt;
 
     translate(dx, dy);
@@ -106,7 +110,7 @@ void Particle::scale(double c)
 {
     Vector2f temp = m_centerCoordinate;
 
-    translate(-temp.x, -temp.y);
+    translate(-m_centerCoordinate.x, -m_centerCoordinate.y);
 
     ScalingMatrix S(c);
     m_A = S * m_A;
