@@ -1,4 +1,5 @@
 #include "Engine.h"
+#include "Particle.h"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -43,6 +44,11 @@ void Engine::input()
 
         if (event.type == Event::KeyPressed && event.key.code == Keyboard::Escape) {
             m_Window.close();
+        }
+
+
+        if (event.type == Event::KeyPressed && event.key.code == Keyboard::G) {
+            gravityEnabled = !gravityEnabled;
         }
 
         if (event.type == Event::MouseButtonPressed && event.mouseButton.button == Mouse::Left) {
